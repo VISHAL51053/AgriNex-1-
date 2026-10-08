@@ -2758,8 +2758,7 @@ function renderModalAdminDispatches() {
         </div>
       </td>
       <td style="padding:10px 12px;">
-        <strong style="color:#0c5a36; font-size:0.86rem;">${o.quantityQt} Qt</strong>
-        <div style="font-size:0.7rem; color:#64748b;">${(o.quantityKg || (o.quantityQt * 100)).toLocaleString()} kg</div>
+        <strong style="color:#0c5a36; font-size:0.86rem;">${(o.quantityKg || (o.quantityQt * 100)).toLocaleString()} kg</strong>
       </td>
       <td style="padding:10px 12px;">
         <div style="font-size:0.8rem; color:#334155; font-weight:700;">${o.pickupFarmerName}</div>
@@ -2834,7 +2833,7 @@ function openGatePassModal(orderCode) {
       <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px; margin-bottom: 14px; font-size: 0.84rem; display: flex; flex-direction: column; gap: 8px;">
         <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 6px;">
           <span style="color: #64748b;">Consignment Produce:</span>
-          <strong style="color: #0f172a;">${order.cropName} (${order.quantityQt} Qt / ${(order.quantityKg || (order.quantityQt * 100)).toLocaleString()} kg)</strong>
+          <strong style="color: #0f172a;">${order.cropName} (${(order.quantityKg || (order.quantityQt * 100)).toLocaleString()} kg)</strong>
         </div>
         <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 6px;">
           <span style="color: #64748b;">Assigned Driver & Truck:</span>

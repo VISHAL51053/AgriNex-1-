@@ -451,7 +451,7 @@ const logisticsData = {
     {
       txId: "TX-ESC-9081",
       orderCode: "FPO-MH-889",
-      crop: "Paddy (1121 Basmati - 100 Qt)",
+      crop: "Paddy (1121 Basmati - 10,000 kg)",
       buyer: "Fresh Mart Wholesale (Navi Mumbai)",
       amount: "₹ 11,200",
       payoutMethod: "Direct UPI ➔ dinesh.logistics@okaxis",
@@ -461,7 +461,7 @@ const logisticsData = {
     {
       txId: "TX-ESC-8922",
       orderCode: "IND-MH-380",
-      crop: "Raw Cotton (80 Qt)",
+      crop: "Raw Cotton (8,000 kg)",
       buyer: "Malegaon Cotton Textiles",
       amount: "₹ 7,500",
       payoutMethod: "Bank NEFT (HDFC0001234)",
@@ -471,7 +471,7 @@ const logisticsData = {
     {
       txId: "TX-ESC-8710",
       orderCode: "IND-MH-365",
-      crop: "Fresh Okra (20 Qt)",
+      crop: "Fresh Okra (2,000 kg)",
       buyer: "Annapoorna Caterers (Nashik)",
       amount: "₹ 2,800",
       payoutMethod: "Direct UPI ➔ dinesh.logistics@okaxis",

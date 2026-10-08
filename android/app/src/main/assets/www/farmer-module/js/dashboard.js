@@ -176,8 +176,8 @@ function openFPOContributeModal(demandId) {
       <!-- Farmer Contribution Form -->
       <form onsubmit="submitFPOContribution(event, '${demand.id}')">
         <div class="form-group">
-          <label class="form-label">Quantity You Want to Commit (in Quintals / Qt) *</label>
-          <input type="number" id="fpo-contrib-qty" class="form-input" placeholder="e.g. 25" min="5" required />
+          <label class="form-label">Quantity You Want to Commit (kg) *</label>
+          <input type="number" id="fpo-contrib-qty" class="form-input" placeholder="e.g. 2500" min="50" required />
           <span style="font-size: 0.72rem; color: #64748b; margin-top: 4px; display: block;">Minimum allowed commitment: ${demand.minContribution}</span>
         </div>
 
@@ -451,7 +451,7 @@ function setupModals() {
       e.preventDefault();
       const cropName = document.getElementById("new-crop-name") ? document.getElementById("new-crop-name").value : "Tomato";
       const grade = document.getElementById("new-crop-grade") ? document.getElementById("new-crop-grade").value : "Grade A";
-      const quantity = document.getElementById("new-crop-qty") ? document.getElementById("new-crop-qty").value : "50";
+      const quantity = document.getElementById("new-crop-qty") ? document.getElementById("new-crop-qty").value : "5000";
       const price = document.getElementById("new-crop-price") ? document.getElementById("new-crop-price").value : "2000";
       const rawHarvestDate = document.getElementById("new-crop-harvest-date") ? document.getElementById("new-crop-harvest-date").value : "";
 
@@ -469,13 +469,16 @@ function setupModals() {
       if (cropName.toLowerCase().includes("paddy") || cropName.toLowerCase().includes("rice")) img = "assets/images/paddy.jpg";
       if (cropName.toLowerCase().includes("cotton")) img = "assets/images/cotton.jpg";
 
+      const qtyNum = parseInt(quantity) || 5000;
       const newListing = {
         id: `LOT-${Date.now().toString().slice(-4)}`,
         crop: cropName,
         image: img,
         grade: grade,
         gradeBadgeClass: grade === "Grade A" ? "badge-grade-a" : "badge-grade-b",
-        quantity: `${quantity} Qt`,
+        quantity: `${qtyNum.toLocaleString('en-IN')} kg`,
+        quantityNumber: qtyNum,
+        quantityKg: qtyNum,
         expectedPrice: `₹ ${price} /Qt`,
         harvestDate: formattedDate,
         bestBid: "Awaiting Bids",
@@ -899,8 +902,9 @@ async function syncListingsFromBackend() {
             image: c.image || c.image_url || 'assets/images/tomato.jpg',
             grade: c.grade || 'Grade A',
             gradeBadgeClass: c.grade === 'Grade B' ? 'badge-grade-b' : 'badge-grade-a',
-            quantity: c.quantity || `${qtyQt} Qt (${(qtyQt * 100).toLocaleString()} kg)`,
-            quantityNumber: qtyQt,
+            quantity: c.quantity ? (c.quantity.includes('kg') ? c.quantity : `${(qtyQt * 100).toLocaleString()} kg`) : `${(qtyQt * 100).toLocaleString()} kg`,
+            quantityNumber: qtyQt * 100,
+            quantityKg: qtyQt * 100,
             expectedPrice: c.expectedPrice || `₹ ${priceKg.toFixed(2)} /kg (₹ ${priceQt.toLocaleString()} /Qt)`,
             expectedPriceNumber: priceQt,
             bestBid: bestBidText,

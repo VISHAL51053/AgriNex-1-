@@ -1119,19 +1119,12 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
 
           <div class="form-group">
-
-            <label class="form-label">Harvest Quantity (Quintals / Qt)</label>
-
-            <input type="number" id="new-crop-qty" class="form-input" placeholder="e.g. 50" min="1" required />
-
+            <label class="form-label">Harvest Quantity (kg)</label>
+            <input type="number" id="new-crop-qty" class="form-input" placeholder="e.g. 5000" min="1" required />
           </div>
-
           <div class="form-group">
-
             <label class="form-label">Expected Floor Price (₹ / Qt)</label>
-
             <input type="number" id="new-crop-price" class="form-input" placeholder="e.g. 1200" required />
-
           </div>
 
         </div>
@@ -1336,50 +1329,33 @@
 
       
 
-      let totalQt = 0;
-
+      let totalKg = 0;
       let totalVal = 0;
-
       let activeBids = 0;
-
       let inTransit = 0;
 
-
-
       listings.forEach(l => {
-
-        const qty = l.quantityNumber || parseInt(l.quantity) || 0;
-
-        const price = l.bestBidNumber || l.expectedPriceNumber || parseInt(l.expectedPrice.replace(/[^0-9]/g, "")) || 0;
-
-        totalQt += qty;
-
-        totalVal += (qty * price);
-
+        let qtyKg = l.quantityKg || (l.quantityNumber ? (l.quantityNumber > 500 ? l.quantityNumber : l.quantityNumber * 100) : (parseInt(l.quantity) || 0));
+        if (l.quantity && l.quantity.includes('kg') && !l.quantityKg) {
+          const m = l.quantity.match(/([0-9,]+)\s*kg/);
+          if (m) qtyKg = parseInt(m[1].replace(/,/g, ''));
+        }
+        const pricePerQt = l.bestBidNumber || l.expectedPriceNumber || parseInt(l.expectedPrice.replace(/[^0-9]/g, "")) || 0;
+        const pricePerKg = pricePerQt > 100 ? (pricePerQt / 100) : pricePerQt;
+        totalKg += qtyKg;
+        totalVal += Math.round(qtyKg * pricePerKg);
         if (l.status.includes("Open") || l.status.includes("Negotiation")) activeBids++;
-
         if (l.status.includes("Dispatched")) inTransit++;
-
       });
 
-
-
       const totalVolEl = document.getElementById("kpi-total-volume");
-
       const activeBidsEl = document.getElementById("kpi-active-bids");
-
       const inTransitEl = document.getElementById("kpi-in-transit");
-
       const grossValEl = document.getElementById("kpi-gross-value");
 
-
-
-      if (totalVolEl) totalVolEl.textContent = `${totalQt} Quintals`;
-
+      if (totalVolEl) totalVolEl.textContent = `${totalKg.toLocaleString('en-IN')} kg`;
       if (activeBidsEl) activeBidsEl.textContent = `${activeBids} Live Offers`;
-
       if (inTransitEl) inTransitEl.textContent = `${inTransit} Lot (${listings.find(l => l.status.includes("Dispatched"))?.crop || 'Paddy'})`;
-
       if (grossValEl) grossValEl.textContent = `₹ ${totalVal.toLocaleString('en-IN')}`;
 
 
@@ -1839,7 +1815,7 @@
       const name = document.getElementById("new-crop-name").value;
       const category = document.getElementById("new-crop-category").value;
       const grade = document.getElementById("new-crop-grade").value;
-      const qty = parseInt(document.getElementById("new-crop-qty").value) || 50;
+      const qty = parseInt(document.getElementById("new-crop-qty").value) || 5000;
       const price = parseInt(document.getElementById("new-crop-price").value) || 1200;
       const shelfLife = document.getElementById("new-crop-shelflife").value;
       const location = document.getElementById("new-crop-location").value;
@@ -1871,8 +1847,9 @@
         image: img,
         grade: grade,
         gradeBadgeClass: grade === "Grade A" ? "badge-grade-a" : (grade === "Grade B" ? "badge-grade-b" : "badge-grade-b"),
-        quantity: `${qty} Qt`,
+        quantity: `${qty.toLocaleString('en-IN')} kg`,
         quantityNumber: qty,
+        quantityKg: qty,
         expectedPrice: `₹ ${price.toLocaleString('en-IN')} /Qt`,
         expectedPriceNumber: price,
         bestBid: `Awaiting Bids`,
@@ -1895,7 +1872,8 @@
           crop: name,
           category: category,
           grade: grade,
-          quantity_qt: qty,
+          quantity_kg: qty,
+          quantity_qt: Math.round(qty / 100),
           price_per_qt: price,
           shelf_life: shelfLife,
           harvest_date: formattedDate,
@@ -1919,8 +1897,8 @@
               gradeKey: grade === 'Grade A' ? 'grade-a' : 'grade-b',
               gradeBadgeClass: data.crop.gradeBadgeClass,
               pricePerKg: data.crop.price_per_kg || (price / 100),
-              availableQtyKg: qty * 100,
-              quantity: `${qty * 100} kg (${qty} Qt)`,
+              availableQtyKg: qty,
+              quantity: `${qty.toLocaleString('en-IN')} kg`,
               qtyNum: qty,
               askPrice: `₹ ${(price / 100).toFixed(2)} /kg`,
               priceNum: price,
@@ -1940,7 +1918,7 @@
 
       renderAllCrops();
       updateKpis();
-      alert(`🎉 Crop Lot "${name}" (${qty} Qt @ ₹${price}/Qt) published live to Buyer Marketplace!`);
+      alert(`🎉 Crop Lot "${name}" (${qty.toLocaleString('en-IN')} kg @ ₹${price}/Qt) published live to Buyer Marketplace!`);
     }
 
     function openLotDetail(lotId) {

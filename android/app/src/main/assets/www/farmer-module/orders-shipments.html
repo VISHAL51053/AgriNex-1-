@@ -354,7 +354,7 @@
             </div>
             <div>
               <div style="font-size:0.72rem; font-weight:600; color:#64748b;">Volume in Transit</div>
-              <div style="font-size:1.1rem; font-weight:800; color:#0c5a36;">160 Qt <span style="font-size:0.72rem; color:#64748b; font-weight:600;">(16,000 kg)</span></div>
+              <div style="font-size:1.1rem; font-weight:800; color:#0c5a36;">16,000 kg</div>
             </div>
           </div>
 
@@ -416,7 +416,7 @@
             <div><span style="color:#64748b;">Farmer:</span> <strong>Ramesh Patel</strong></div>
             <div><span style="color:#64748b;">Driver:</span> <strong id="gp-drv">Dinesh Yadav</strong></div>
             <div><span style="color:#64748b;">Truck No:</span> <strong id="gp-veh">MH-12-AQ-9011</strong></div>
-            <div><span style="color:#64748b;">Produce:</span> <strong id="gp-crop">Tomato (40 Qt)</strong></div>
+            <div><span style="color:#64748b;">Produce:</span> <strong id="gp-crop">Tomato (4,000 kg)</strong></div>
             <div><span style="color:#64748b;">Net Weight:</span> <strong id="gp-wt">4,000 kg</strong></div>
             <div><span style="color:#64748b;">Destination:</span> <strong id="gp-dst">Swiggy DC</strong></div>
           </div>
@@ -544,7 +544,7 @@
             <div>
               <div style="font-size:0.7rem; color:#64748b; font-weight:700;">PRODUCE & BUYER</div>
               <div style="font-weight:800; font-size:0.95rem; color:#0f172a;">${s.crop}</div>
-              <div style="color:#059669; font-weight:700;">${s.quantity_qt} Qt (${s.quantity_kg.toLocaleString()} kg)</div>
+              <div style="color:#059669; font-weight:700;">${(s.quantity_kg || (s.quantity_qt * 100)).toLocaleString()} kg</div>
               <div style="color:#64748b;">${s.buyer}</div>
             </div>
             <div>
@@ -627,7 +627,7 @@
       document.getElementById('gp-id').innerText = s.gate_pass;
       document.getElementById('gp-drv').innerText = s.driver;
       document.getElementById('gp-veh').innerText = s.vehicle;
-      document.getElementById('gp-crop').innerText = `${s.crop} (${s.quantity_qt} Qt)`;
+      document.getElementById('gp-crop').innerText = `${s.crop} (${(s.quantity_kg || (s.quantity_qt * 100)).toLocaleString()} kg)`;
       document.getElementById('gp-wt').innerText = `${s.quantity_kg.toLocaleString()} kg`;
       document.getElementById('gp-dst').innerText = s.destination;
       document.getElementById('gatePassModal').classList.add('active');

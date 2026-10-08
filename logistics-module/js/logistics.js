@@ -1003,7 +1003,7 @@ function downloadGatePass(orderCode) {
       </div>
 
       <div class="box">
-        <div class="row"><span class="label">Consignment / Produce:</span><span class="val">${order.cropName} (${order.quantityQt} Qt / ${(order.quantityKg).toLocaleString()} kg)</span></div>
+        <div class="row"><span class="label">Consignment / Produce:</span><span class="val">${order.cropName} (${(order.quantityKg).toLocaleString()} kg)</span></div>
         <div class="row"><span class="label">Assigned Vehicle:</span><span class="val">${order.vehicleNo || 'MH-15-AQ-9011 (Tata 407 Reefer)'}</span></div>
         <div class="row"><span class="label">Origin Mandi Gate:</span><span class="val">${order.pickupAddress}</span></div>
         <div class="row"><span class="label">Destination Unloading Bay:</span><span class="val">${order.deliveryAddress}</span></div>
@@ -1133,7 +1133,7 @@ function openGatePassModal(orderCode) {
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 8px;">
           <span style="font-size: 0.68rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 2px;">PRODUCE & VOLUME</span>
           <strong style="color: #0f172a; font-size: 0.88rem; display: block;">${order.cropName}</strong>
-          <div style="font-size: 0.78rem; color: #065f46; font-weight: 800; margin-top: 2px;">${order.quantityQt} Qt (${(order.quantityKg).toLocaleString()} kg)</div>
+          <div style="font-size: 0.78rem; color: #065f46; font-weight: 800; margin-top: 2px;">${(order.quantityKg).toLocaleString()} kg</div>
         </div>
 
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 10px 12px; border-radius: 8px;">
@@ -1307,7 +1307,7 @@ function openScheduleSlotModal(orderCode) {
       <div style="display: flex; align-items: center; gap: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 20px;">
         <img src="../farmer-module/${order.image || 'assets/images/tomato.jpg'}" alt="${order.cropName}" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover; border: 1px solid #cbd5e1;" onerror="this.src='../assets/images/tomato.jpg'" />
         <div style="flex: 1;">
-          <strong style="color: #0f172a; font-size: 0.98rem; display: block;">${order.cropName} (${order.quantityQt} Qt)</strong>
+          <strong style="color: #0f172a; font-size: 0.98rem; display: block;">${order.cropName} (${(order.quantityKg).toLocaleString()} kg)</strong>
           <span style="color: #64748b; font-size: 0.78rem; display: block; margin-top: 2px;">📍 ${order.pickupAddress}</span>
           <span style="color: #0c5a36; font-size: 0.78rem; font-weight: 700; display: block; margin-top: 2px;">Guaranteed Freight: ${order.freightFormatted}</span>
         </div>

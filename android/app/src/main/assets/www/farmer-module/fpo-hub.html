@@ -412,12 +412,12 @@
           <!-- Crop Quick Filter Chips -->
           <div class="crop-filter-chips" id="fpo-crop-chips">
             <button class="crop-chip-btn active" onclick="filterByCropChip('all', this)">🌾 All Bulk Orders (6)</button>
-            <button class="crop-chip-btn" onclick="filterByCropChip('Tomato', this)">🍅 Tomato (500 Qt)</button>
-            <button class="crop-chip-btn" onclick="filterByCropChip('Onion', this)">🧅 Red Onion (1,000 Qt)</button>
-            <button class="crop-chip-btn" onclick="filterByCropChip('Paddy', this)">🌾 1121 Paddy (2,000 Qt)</button>
-            <button class="crop-chip-btn" onclick="filterByCropChip('Cotton', this)">☁️ Raw Cotton (800 Qt)</button>
-            <button class="crop-chip-btn" onclick="filterByCropChip('Chilli', this)">🌶️ Green Chilli (300 Qt)</button>
-            <button class="crop-chip-btn" onclick="filterByCropChip('Soybean', this)">🌻 Soybean (1,500 Qt)</button>
+            <button class="crop-chip-btn" onclick="filterByCropChip('Tomato', this)">🍅 Tomato (50,000 kg)</button>
+            <button class="crop-chip-btn" onclick="filterByCropChip('Onion', this)">🧅 Red Onion (1,00,000 kg)</button>
+            <button class="crop-chip-btn" onclick="filterByCropChip('Paddy', this)">🌾 1121 Paddy (2,00,000 kg)</button>
+            <button class="crop-chip-btn" onclick="filterByCropChip('Cotton', this)">☁️ Raw Cotton (80,000 kg)</button>
+            <button class="crop-chip-btn" onclick="filterByCropChip('Chilli', this)">🌶️ Green Chilli (30,000 kg)</button>
+            <button class="crop-chip-btn" onclick="filterByCropChip('Soybean', this)">🌻 Soybean (1,50,000 kg)</button>
           </div>
 
           <div class="fpo-demands-grid" id="fpo-demands-container">
@@ -733,8 +733,8 @@
             <!-- Pooling Progress Bar -->
             <div>
               <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">
-                <span style="color: #334155;">Pooled: <strong>${d.currentPooledQty} Qt</strong> / ${d.totalRequiredQty}</span>
-                <span style="color: ${isFull ? '#166534' : '#0c5a36'};">${percent}% Filled (${remainingQty} Qt left)</span>
+                <span style="color: #334155;">Pooled: <strong>${(d.currentPooledQty * 100).toLocaleString('en-IN')} kg</strong> / ${d.totalRequiredQty}</span>
+                <span style="color: ${isFull ? '#166534' : '#0c5a36'};">${percent}% Filled (${(remainingQty * 100).toLocaleString('en-IN')} kg left)</span>
               </div>
               <div class="fpo-progress-bar-wrap" style="height: 10px; border-radius: 999px;">
                 <div class="fpo-progress-bar-fill" style="width: ${percent}%; border-radius: 999px; background: ${isFull ? '#166534' : '#0c5a36'};"></div>
@@ -906,17 +906,17 @@
             <div class="form-group">
               <label class="form-label" style="font-size: 0.84rem; font-weight: 700;">Select Your Crop Lot from "My Crops & Lots" *</label>
               <select id="fpo-lot-select" class="form-input" style="font-size: 0.88rem; font-weight: 700;">
-                <option value="LOT-TOM-01">LOT-TOM-01 • Tomato (Shivam Hybrid) — 50 Qt Available (Harvested)</option>
-                <option value="LOT-ONI-02">LOT-ONI-02 • Red Onion (Nashik Export Grade) — 30 Qt Available</option>
-                <option value="LOT-PAD-03">LOT-PAD-03 • Paddy (1121 Basmati) — 100 Qt Available</option>
-                <option value="LOT-COT-05">LOT-COT-05 • Raw Cotton (MCU-5 Long Staple) — 80 Qt Available</option>
-                <option value="LOT-CHI-04">LOT-CHI-04 • Green Chilli (G4 Spicy) — 25 Qt Available</option>
+                <option value="LOT-TOM-01">LOT-TOM-01 • Tomato (Shivam Hybrid) — 5,000 kg Available (Harvested)</option>
+                <option value="LOT-ONI-02">LOT-ONI-02 • Red Onion (Nashik Export Grade) — 3,000 kg Available</option>
+                <option value="LOT-PAD-03">LOT-PAD-03 • Paddy (1121 Basmati) — 10,000 kg Available</option>
+                <option value="LOT-COT-05">LOT-COT-05 • Raw Cotton (MCU-5 Long Staple) — 8,000 kg Available</option>
+                <option value="LOT-CHI-04">LOT-CHI-04 • Green Chilli (G4 Spicy) — 2,500 kg Available</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label class="form-label" style="font-size: 0.84rem; font-weight: 700;">Quantity You Want to Commit (in Quintals / Qt) *</label>
-              <input type="number" id="fpo-qty-input" class="form-input" placeholder="e.g. 25" min="5" value="25" oninput="calculateEstimatedPayout(this.value, ${demand.targetPriceNumber})" required style="font-size: 1rem; font-weight: 700;" />
+              <label class="form-label" style="font-size: 0.84rem; font-weight: 700;">Quantity You Want to Commit (kg) *</label>
+              <input type="number" id="fpo-qty-input" class="form-input" placeholder="e.g. 2500" min="500" value="2500" oninput="calculateEstimatedPayout(this.value, ${demand.targetPriceNumber})" required style="font-size: 1rem; font-weight: 700;" />
               <div style="font-size: 0.74rem; color: #64748b; margin-top: 4px;">
                 Minimum allowed commitment: <strong>${demand.minContribution}</strong>
               </div>
@@ -926,10 +926,10 @@
             <div id="payout-calc-box" style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; margin-bottom: 16px;">
               <div style="font-size: 0.76rem; font-weight: 700; color: #64748b; margin-bottom: 6px; text-transform: uppercase;">💰 Estimated Payout Breakdown:</div>
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.82rem;">
-                <div>Total Volume: <strong id="calc-volume" style="color: #0f172a;">25 Qt (2,500 kg)</strong></div>
+                <div>Total Volume: <strong id="calc-volume" style="color: #0f172a;">2,500 kg</strong></div>
                 <div>Contract Rate: <strong style="color: #0c5a36;">₹ ${priceKg} /kg</strong></div>
-                <div>Gross Payout: <strong id="calc-gross" style="color: #0f172a; font-size: 0.95rem;">₹ 33,750</strong></div>
-                <div>35% Advance Escrow: <strong id="calc-advance" style="color: #15803d; font-size: 0.95rem;">₹ 11,812</strong></div>
+                <div>Gross Payout: <strong id="calc-gross" style="color: #0f172a; font-size: 0.95rem;">₹ 55,000</strong></div>
+                <div>35% Advance Escrow: <strong id="calc-advance" style="color: #15803d; font-size: 0.95rem;">₹ 19,250</strong></div>
               </div>
             </div>
 
@@ -965,15 +965,15 @@
 
     function calculateEstimatedPayout(qty, price) {
       const q = parseFloat(qty) || 0;
-      const total = q * price;
+      const ratePerKg = price / 100;
+      const total = Math.round(q * ratePerKg);
       const advance = Math.round(total * 0.35);
-      const volKg = (q * 100).toLocaleString('en-IN');
       
       const volEl = document.getElementById("calc-volume");
       const grossEl = document.getElementById("calc-gross");
       const advEl = document.getElementById("calc-advance");
 
-      if (volEl) volEl.textContent = `${q} Qt (${volKg} kg)`;
+      if (volEl) volEl.textContent = `${q.toLocaleString('en-IN')} kg`;
       if (grossEl) grossEl.textContent = `₹ ${total.toLocaleString('en-IN')}`;
       if (advEl) advEl.textContent = `₹ ${advance.toLocaleString('en-IN')}`;
     }

@@ -2669,12 +2669,12 @@
           </div>
 
           <!-- Step 2: 1-Tap Quantity Stepper -->
-          <label style="font-size: 0.9rem; font-weight: 800; color: #0f172a; display: block; margin-bottom: 8px;">2. Quantity (वजन / पोती): <strong id="lite-add-qty-display" style="color: #0c5a36;">50 Quintal (500 Bags)</strong></label>
+          <label style="font-size: 0.9rem; font-weight: 800; color: #0f172a; display: block; margin-bottom: 8px;">2. Quantity (वजन): <strong id="lite-add-qty-display" style="color: #0c5a36;">5,000 kg</strong></label>
           <div class="lite-stepper-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px;">
-            <button type="button" class="lite-stepper-btn" onclick="setFarmerLiteQty(20)">20 Qt</button>
-            <button type="button" class="lite-stepper-btn" onclick="setFarmerLiteQty(50)">50 Qt</button>
-            <button type="button" class="lite-stepper-btn" onclick="setFarmerLiteQty(100)">100 Qt</button>
-            <button type="button" class="lite-stepper-btn" onclick="setFarmerLiteQty(200)">200 Qt</button>
+            <button type="button" class="lite-stepper-btn" onclick="setFarmerLiteQty(2000)">2,000 kg</button>
+            <button type="button" class="lite-stepper-btn" onclick="setFarmerLiteQty(5000)">5,000 kg</button>
+            <button type="button" class="lite-stepper-btn" onclick="setFarmerLiteQty(10000)">10,000 kg</button>
+            <button type="button" class="lite-stepper-btn" onclick="setFarmerLiteQty(20000)">20,000 kg</button>
           </div>
 
           <!-- Step 3: Expected Price / Rate -->
@@ -2771,7 +2771,7 @@
   let selectedCropKey = 'Tomato';
   let selectedCropName = 'Tomato (टोमॅटो)';
   let selectedCropRate = 1300;
-  let selectedCropQty = 50;
+  let selectedCropQty = 5000;
 
   function selectFarmerLiteCrop(key, name, defRate) {
     selectedCropKey = key;
@@ -2792,7 +2792,7 @@
   function setFarmerLiteQty(qty) {
     selectedCropQty = qty;
     const qtyDisplay = document.getElementById('lite-add-qty-display');
-    if (qtyDisplay) qtyDisplay.textContent = `${qty} Quintal (${qty * 10} Bags)`;
+    if (qtyDisplay) qtyDisplay.textContent = `${qty.toLocaleString('en-IN')} kg`;
   }
 
   function adjustFarmerLiteRate(delta) {
@@ -2827,8 +2827,9 @@
       harvestDate: 'Today',
       image: `assets/images/${selectedCropKey.toLowerCase()}.jpg`,
       grade: 'Grade A Export',
-      quantity: `${selectedCropQty} Qt (${selectedCropQty * 100} kg)`,
+      quantity: `${selectedCropQty.toLocaleString('en-IN')} kg`,
       quantityNumber: selectedCropQty,
+      quantityKg: selectedCropQty,
       expectedPrice: `₹ ${(selectedCropRate / 100).toFixed(2)} /kg (₹ ${selectedCropRate} /Qt)`,
       expectedPriceNumber: selectedCropRate,
       bestBid: `₹ ${((selectedCropRate * 1.05) / 100).toFixed(2)} /kg (₹ ${Math.round(selectedCropRate * 1.05)} /Qt)`,

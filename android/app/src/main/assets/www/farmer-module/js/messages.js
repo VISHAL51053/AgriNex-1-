@@ -12,7 +12,7 @@
       manager: 'Karthik Ramachandran (Sourcing Lead)',
       badge: 'Tier-1 Institutional Buyer',
       crop: 'Tomato (Hybrid Red)',
-      quantity: '45 Qt (4,500 kg)',
+      quantity: '4,500 kg',
       bidRateKg: 24.50,
       bidRateQt: 2450,
       mandiRefKg: 22.50,
@@ -24,12 +24,12 @@
       avatar: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=120',
       phone: '+91 98234-11223',
       unread: 2,
-      offerText: 'Active Bid: <strong>₹ 24.50 /kg</strong> (₹ 2,450 /Qt) for 45 Qt Hybrid Tomato • 35% Advance: ₹ 38,587',
+      offerText: 'Active Bid: <strong>₹ 24.50 /kg</strong> (₹ 2,450 /Qt) for 4,500 kg Hybrid Tomato • 35% Advance: ₹ 38,587',
       messages: [
         {
           id: 'm1',
           type: 'incoming',
-          text: 'Namaste Rameshwar ji! We reviewed your Grade A Tomato lot (45 Qt) listed from Lasalgaon. We are offering ₹ 24.50/kg with 35% advance bank escrow ready in AgriNex Vault.',
+          text: 'Namaste Rameshwar ji! We reviewed your Grade A Tomato lot (4,500 kg) listed from Lasalgaon. We are offering ₹ 24.50/kg with 35% advance bank escrow ready in AgriNex Vault.',
           time: '10:30 AM'
         },
         {
@@ -58,7 +58,7 @@
       avatar: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=120',
       phone: '+91 97123-77889',
       unread: 1,
-      offerText: 'Active Bid: <strong>₹ 28.50 /kg</strong> (₹ 2,850 /Qt) for 80 Qt Nashik Red Onion • 35% Advance: ₹ 79,800',
+      offerText: 'Active Bid: <strong>₹ 28.50 /kg</strong> (₹ 2,850 /Qt) for 8,000 kg Nashik Red Onion • 35% Advance: ₹ 79,800',
       messages: [
         {
           id: 'm1',
@@ -80,7 +80,7 @@
       manager: 'Pooja Nair (Supply Chain Director)',
       badge: 'Daily Direct Sourcing',
       crop: 'Green Chilli & Capsicum',
-      quantity: '30 Qt (3,000 kg)',
+      quantity: '3,000 kg',
       bidRateKg: 38.00,
       bidRateQt: 3800,
       mandiRefKg: 35.00,
@@ -92,7 +92,7 @@
       avatar: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=120',
       phone: '+91 98450-23456',
       unread: 0,
-      offerText: 'Active Bid: <strong>₹ 38.00 /kg</strong> for 30 Qt Capsicum / Chilli • 35% Advance: ₹ 39,900',
+      offerText: 'Active Bid: <strong>₹ 38.00 /kg</strong> for 3,000 kg Capsicum / Chilli • 35% Advance: ₹ 39,900',
       messages: [
         {
           id: 'm1',
@@ -108,7 +108,7 @@
       manager: 'Vikram Verma (Central Grain Desk Lead)',
       badge: 'e-Choupal Verified Buyer',
       crop: 'Wheat (Sharbati Lokwan)',
-      quantity: '150 Qt (15,000 kg)',
+      quantity: '15,000 kg',
       bidRateKg: 26.50,
       bidRateQt: 2650,
       mandiRefKg: 24.80,
@@ -120,12 +120,12 @@
       avatar: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=120',
       phone: '+91 98990-44556',
       unread: 0,
-      offerText: 'Active Bid: <strong>₹ 26.50 /kg</strong> (₹ 2,650 /Qt) for 150 Qt Sharbati Lokwan Wheat • 35% Advance: ₹ 1,39,125',
+      offerText: 'Active Bid: <strong>₹ 26.50 /kg</strong> (₹ 2,650 /Qt) for 15,000 kg Sharbati Lokwan Wheat • 35% Advance: ₹ 1,39,125',
       messages: [
         {
           id: 'm1',
           type: 'incoming',
-          text: 'Namaskar Rameshwar ji, ITC Aashirvaad sourcing team is ready to lift your 150 Qt Sharbati wheat lot directly from your storage godown with zero transport deductions.',
+          text: 'Namaskar Rameshwar ji, ITC Aashirvaad sourcing team is ready to lift your 15,000 kg Sharbati wheat lot directly from your storage godown with zero transport deductions.',
           time: '2 hours ago'
         }
       ]
@@ -136,7 +136,7 @@
       manager: 'Hitesh Patel (Quality Officer)',
       badge: 'Processing Industry Partner',
       crop: 'Potato (Jyoti Grade A)',
-      quantity: '120 Qt (12,000 kg)',
+      quantity: '12,000 kg',
       bidRateKg: 18.50,
       bidRateQt: 1850,
       mandiRefKg: 17.20,
@@ -148,7 +148,7 @@
       avatar: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=120',
       phone: '+91 99001-22334',
       unread: 0,
-      offerText: 'Offer Accepted & Locked: <strong>₹ 18.50 /kg</strong> for 120 Qt Jyoti Potato • 35% Escrow Released',
+      offerText: 'Offer Accepted & Locked: <strong>₹ 18.50 /kg</strong> for 12,000 kg Jyoti Potato • 35% Escrow Released',
       messages: [
         {
           id: 'm1',
@@ -170,7 +170,7 @@
       manager: 'Anwar Al-Hassan (Gulf Export Desk)',
       badge: 'Middle East Export Partner',
       crop: 'Pomegranate (Bhagwa Grade A)',
-      quantity: '25 Qt (2,500 kg)',
+      quantity: '2,500 kg',
       bidRateKg: 145.00,
       bidRateQt: 14500,
       mandiRefKg: 130.00,
@@ -182,7 +182,7 @@
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120',
       phone: '+91 99887-55443',
       unread: 0,
-      offerText: 'Export Bid: <strong>₹ 145.00 /kg</strong> for 25 Qt Bhagwa Pomegranate • 35% Escrow: ₹ 1,26,875',
+      offerText: 'Export Bid: <strong>₹ 145.00 /kg</strong> for 2,500 kg Bhagwa Pomegranate • 35% Escrow: ₹ 1,26,875',
       messages: [
         {
           id: 'm1',
@@ -198,7 +198,7 @@
       manager: 'Rahul Roy (Quick Commerce Buyer)',
       badge: 'Quick-Commerce Express',
       crop: 'Tomato (Hybrid Red)',
-      quantity: '40 Qt (4,000 kg)',
+      quantity: '4,000 kg',
       bidRateKg: 24.00,
       bidRateQt: 2400,
       mandiRefKg: 22.50,
@@ -210,7 +210,7 @@
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120',
       phone: '+91 98234-11223',
       unread: 0,
-      offerText: 'Active Counter: <strong>₹ 24.00 /kg</strong> for 40 Qt Tomato • Daily 100 Crate Dispatch',
+      offerText: 'Active Counter: <strong>₹ 24.00 /kg</strong> for 4,000 kg Tomato • Daily 100 Crate Dispatch',
       messages: [
         {
           id: 'm1',

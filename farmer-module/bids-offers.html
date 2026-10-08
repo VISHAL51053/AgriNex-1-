@@ -607,7 +607,7 @@
 
             <div class="price-tag-dual">
               <div style="font-size:0.7rem; color:#64748b; font-weight:700;">QUANTITY & TOTAL</div>
-              <div style="font-size:1rem; font-weight:800; color:#0f172a;">${b.quantity_qt} Qt (${b.quantity_kg.toLocaleString()} kg)</div>
+              <div style="font-size:1rem; font-weight:800; color:#0f172a;">${(b.quantity_kg || (b.quantity_qt * 100)).toLocaleString()} kg</div>
               <div style="font-size:0.85rem; font-weight:800; color:#059669; margin-top:2px;">Total: ₹ ${b.total_value.toLocaleString()}</div>
               <div style="font-size:0.7rem; color:#0284c7; font-weight:700; margin-top:2px;">35% Advance: ₹ ${b.advance_35.toLocaleString()}</div>
             </div>
@@ -653,7 +653,7 @@
     function openAccept(id) {
       activeBid = BIDS_DATA.find(b => b.id === id);
       if (!activeBid) return;
-      document.getElementById('m-crop').innerText = `${activeBid.crop} (${activeBid.quantity_qt} Qt)`;
+      document.getElementById('m-crop').innerText = `${activeBid.crop} (${(activeBid.quantity_kg || (activeBid.quantity_qt * 100)).toLocaleString()} kg)`;
       document.getElementById('m-buyer').innerText = activeBid.buyer_name;
       document.getElementById('m-rate').innerText = `₹ ${activeBid.bid_rate_kg.toFixed(2)} /kg (₹ ${activeBid.bid_rate_qt.toLocaleString()} /Qt)`;
       document.getElementById('m-total').innerText = `₹ ${activeBid.total_value.toLocaleString()}`;

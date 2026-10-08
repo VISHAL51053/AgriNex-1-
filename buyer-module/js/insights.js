@@ -727,7 +727,7 @@
     if (spreadEl) spreadEl.textContent = `+${commodity.arbitragePct}%`;
     if (spreadSub) spreadSub.textContent = transSpreadSub;
 
-    if (arrivalsEl) arrivalsEl.textContent = `${commodity.arrivalsQt.toLocaleString('en-IN')} Qt`;
+    if (arrivalsEl) arrivalsEl.textContent = `${(commodity.arrivalsKg || (commodity.arrivalsQt * 100)).toLocaleString('en-IN')} kg`;
     if (arrivalsSub) arrivalsSub.textContent = transArrivalsSub;
 
     if (sentimentEl) sentimentEl.textContent = transSentiment;
@@ -996,8 +996,7 @@
             </div>
           </td>
           <td style="padding: 12px 14px;">
-            <strong style="color: #0f172a; font-size: 0.9rem;">${item.arrivalsQt.toLocaleString('en-IN')} Qt</strong>
-            <div style="font-size: 0.7rem; color: #64748b;">(${item.arrivalsKg.toLocaleString('en-IN')} kg)</div>
+            <strong style="color: #0f172a; font-size: 0.9rem;">${(item.arrivalsKg || (item.arrivalsQt * 100)).toLocaleString('en-IN')} kg</strong>
           </td>
           <td style="padding: 12px 14px; font-size: 0.84rem; color: #64748b;">
             ${formatInsightPrice(item.minPriceQt)}
@@ -1131,7 +1130,7 @@
             ₹ ${minKg} – ₹ ${maxKg} /kg
           </td>
           <td style="padding: 12px 14px; font-weight: 700; color: #0f172a;">
-            ${h.arrivalsQt.toLocaleString('en-IN')} Qt
+            ${(h.arrivalsKg || (h.arrivalsQt * 100)).toLocaleString('en-IN')} kg
           </td>
           <td style="padding: 12px 14px;">
             <span class="badge badge-grade-green" style="font-size: 0.72rem;">+${savingsPct}% (${transSaveText})</span>

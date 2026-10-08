@@ -9,7 +9,7 @@ let buyerFilterState = {
   grade: 'all',
   category: 'all',
   sort: 'default',
-  unitDisplay: 'both', // 'both', 'kg', 'qt'
+  unitDisplay: 'kg', // 'kg' (default), 'both', 'qt'
   buyerPersona: 'my-account' // 'my-account' or 'other-buyer'
 };
 
@@ -368,7 +368,7 @@ function renderVerifiedLots(lotsToRender = null) {
             availQtyDisplay = `${availQt} Qt`;
           } else if (unitMode === 'both') {
             priceDisplayHtml = `₹${kgRate} <span>/ kg</span> <span style="font-size:0.75rem; font-weight:700; opacity:0.92; margin-left:3px;">(₹${qtRateNum.toLocaleString('en-IN')}/Qt)</span>`;
-            availQtyDisplay = `${availKg.toLocaleString('en-IN')} kg (${availQt} Qt)`;
+            availQtyDisplay = `${availKg.toLocaleString('en-IN')} kg`;
           } else {
             // default 'kg'
             priceDisplayHtml = `₹${kgRate} <span>/ kg</span>`;
@@ -587,7 +587,6 @@ function renderVerifiedLots(lotsToRender = null) {
             tableMandiHtml = `Mandi: <span style="text-decoration: line-through;">₹ ${mandiKgRate.toFixed(2)}/kg (₹ ${mandiQtRate.toLocaleString('en-IN')}/Qt)</span>`;
             qtyColumnHtml = `
               <strong style="font-size: 0.92rem; color: #0f172a;">${availKg.toLocaleString('en-IN')} kg</strong>
-              <span style="font-size: 0.72rem; color: #64748b; display: block;">(${availQt} Qt)</span>
             `;
           } else {
             // default 'kg'
@@ -595,7 +594,6 @@ function renderVerifiedLots(lotsToRender = null) {
             tableMandiHtml = `Mandi: <span style="text-decoration: line-through;">₹ ${mandiKgRate.toFixed(2)} /kg</span>`;
             qtyColumnHtml = `
               <strong style="font-size: 0.92rem; color: #0f172a;">${availKg.toLocaleString('en-IN')} kg</strong>
-              <span style="font-size: 0.72rem; color: #64748b; display: block;">(${availQt} Qt)</span>
             `;
           }
 

@@ -644,7 +644,7 @@
             </div>
             <div style="min-width: 0;">
               <div style="font-size: 0.75rem; font-weight: 600; color: #64748b; margin-bottom: 2px;">Total Stock</div>
-              <div style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin-bottom: 2px; white-space: nowrap;" id="kpi-total-demand">5,79,190 <span style="font-size: 0.75rem; font-weight: 600; color: #64748b;">Quintals</span></div>
+              <div style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin-bottom: 2px; white-space: nowrap;" id="kpi-total-demand">5,79,19,000 <span style="font-size: 0.75rem; font-weight: 600; color: #64748b;">kg</span></div>
               <div style="font-size: 0.72rem; font-weight: 700; color: #10b981;">
                 ↑ 8.7% <span style="color: #64748b; font-weight: 500;">today</span>
               </div>
@@ -1040,7 +1040,8 @@
       }
 
       const totalVol = meta.total_mandi_volume_qt || commodities.reduce((a, b) => a + (b.arrivals_qt || 0), 0);
-      document.getElementById("kpi-total-demand").innerHTML = `${totalVol.toLocaleString('en-IN')} <span style="font-size: 0.75rem; font-weight: 600; color: #64748b;">Quintals</span>`;
+      const totalVolKg = totalVol * 100;
+      document.getElementById("kpi-total-demand").innerHTML = `${totalVolKg.toLocaleString('en-IN')} <span style="font-size: 0.75rem; font-weight: 600; color: #64748b;">kg</span>`;
       
       if (meta.top_gainer) {
         document.getElementById("kpi-top-crop").textContent = meta.top_gainer.commodity;

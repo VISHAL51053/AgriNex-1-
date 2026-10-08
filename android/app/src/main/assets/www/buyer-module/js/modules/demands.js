@@ -329,7 +329,7 @@ function renderBuyerDemands() {
         <div style="margin-bottom: 16px;">
           <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; margin-bottom: 6px;">
             <span style="color: #475569; font-weight: 600;">
-              ${sourcedVolLbl} <strong style="color: ${progressTextColor}; font-weight: 800;">${dem.fulfilledTonnage || 0} / ${dem.tonnageNum || 150} ${window.t ? window.t('unit_qt', 'Qt') : 'Qt'}</strong> <span style="font-size: 0.74rem; color: #64748b;">(${((dem.fulfilledTonnage || 0) * 100).toLocaleString('en-IN')} / ${((dem.tonnageNum || 150) * 100).toLocaleString('en-IN')} kg)</span>
+              ${sourcedVolLbl} <strong style="color: ${progressTextColor}; font-weight: 800;">${((dem.fulfilledTonnage || 0) * (dem.unit === 'kg' ? 1 : 100)).toLocaleString('en-IN')} / ${((dem.tonnageNum || 150) * (dem.unit === 'kg' ? 1 : 100)).toLocaleString('en-IN')} kg</strong>
             </span>
             <strong style="color: ${progressTextColor}; font-weight: 800;">${fulfilledPct}% ${sourcedStatusLbl}</strong>
           </div>
@@ -394,8 +394,9 @@ function openDemandBidsModal(demandId) {
   if (ceilingEl) ceilingEl.textContent = demand.targetPrice;
   if (destEl) destEl.textContent = window.tLocation ? window.tLocation(demand.location) : demand.location;
   if (remainingEl) {
-    const rem = Math.max(0, (demand.tonnageNum || 150) - (demand.fulfilledTonnage || 0));
-    remainingEl.textContent = `${rem} ${demand.unit || 'Qt'} (${(rem * 100).toLocaleString('en-IN')} kg)`;
+    const remQt = Math.max(0, (demand.tonnageNum || 150) - (demand.fulfilledTonnage || 0));
+    const remKg = demand.unit === 'kg' ? remQt : remQt * 100;
+    remainingEl.textContent = `${remKg.toLocaleString('en-IN')} kg`;
   }
 
   if (listContainer) {
@@ -487,7 +488,7 @@ function acceptDemandFarmerBid(demandId, bidId) {
   const bid = demand.bids ? demand.bids.find(b => b.bidId === bidId) : null;
   const farmerName = bid ? bid.farmerName : 'Farmer';
   const bidPrice = bid ? bid.bidPrice : demand.targetPrice;
-  const offeredQty = bid ? bid.offeredQty : '50 Qt (5,000 kg)';
+  const offeredQty = bid ? bid.offeredQty : '5,000 kg';
 
   // Calculate 35% escrow
   const totalVal = (bid ? bid.bidPriceNum : 1200) * 50;
@@ -530,7 +531,7 @@ function downloadPurchaseOrder(demandId) {
   const demand = (buyerData && buyerData.buyerDemands) ? buyerData.buyerDemands.find(d => d.id === demandId) : null;
   if (window.generateAndOpenPO) {
     const cropName = demand ? demand.crop : 'Red Onion (Lasalgaon Garwa Export)';
-    const qtyText = demand ? `${demand.totalQuantityQt} Qt (${(demand.totalQuantityQt * 100).toLocaleString('en-IN')} kg)` : '50 Qt (5,000 kg)';
+    const qtyText = demand ? `${((demand.totalQuantityQt || demand.tonnageNum || 50) * 100).toLocaleString('en-IN')} kg` : '5,000 kg';
     const totalVal = demand ? Math.round(demand.totalQuantityQt * demand.targetPriceNum) : 90000;
     window.generateAndOpenPO(demandId, cropName, qtyText, 'Patil Rameshwar', totalVal);
   } else {
@@ -600,8 +601,9 @@ async function handleNewDemandSubmit(e) {
     crop: crop,
     image: getCropImage(crop),
     category: 'Fresh Farm Produce',
-    tonnage: `${tonnageQt} Qt (${totalKg.toLocaleString('en-IN')} kg)`,
+    tonnage: `${totalKg.toLocaleString('en-IN')} kg`,
     tonnageNum: tonnageQt,
+    unit: 'kg',
     targetPrice: `₹ ${pricePerKg.toFixed(2)}/kg`,
     pricePerKg: pricePerKg,
     location: 'Vashi APMC Central Terminal, Navi Mumbai, MH',
